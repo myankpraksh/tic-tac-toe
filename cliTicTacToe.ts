@@ -1,5 +1,5 @@
-import readline from "readline";
-import { ticTacToe } from "./ticTacToeEngine";
+const readline = require("readline");
+const { ticTacToe } = require("./ticTacToeEngine");
 interface ScoreBoard {
   user: number;
   comp: number;
@@ -28,7 +28,7 @@ async function getValidInput(
   return input;
 }
 
-async function playRound(game: ticTacToe, scoreBoard: ScoreBoard) {
+async function playRound(game: typeof ticTacToe, scoreBoard: ScoreBoard) {
   let gameOver = false;
 
   while (!gameOver) {
@@ -57,7 +57,7 @@ async function playRound(game: ticTacToe, scoreBoard: ScoreBoard) {
               ? `Congratulations!!🎉 You (${winner[0]}) Win!`
               : `You Lost 🙁. Computer (${winner[0]}) Wins!`;
           console.log(winMessage);
-          scoreBoard[winner[1]]++;
+          scoreBoard["user"]++;
           console.log("Current Score");
           console.table(scoreBoard);
           gameOver = true;
@@ -87,7 +87,7 @@ async function playRound(game: ticTacToe, scoreBoard: ScoreBoard) {
               ? `Congratulations!!🎉 You (${winner[0]}) Win!`
               : `You Lost 🙁. Computer (${winner[0]}) Wins!`;
           console.log(winMessage);
-          scoreBoard[winner[1]]++;
+          scoreBoard["comp"]++;
           console.log("Current Score");
           console.table(scoreBoard);
           gameOver = true;
